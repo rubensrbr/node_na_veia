@@ -7,8 +7,12 @@ const userRouter = require("./routes/userRoutes");
 // MIDDLEWARE
 // Just a function that handles/modify incoming data in the
 // Request/Response cycle
-app.use(morgan("dev"));
+console.log(process.env.NODE_ENV);
+if (process.env.NODE_ENV == "development") {
+  app.use(morgan("dev"));
+}
 app.use(express.json());
+// app.use(express.static(`${__dirname}/public`));
 
 // Will apply to every req
 app.use((req, res, next) => {
